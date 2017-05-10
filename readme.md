@@ -8,7 +8,7 @@ There are several things in the **Dummy Bank** application which can be improved
 Tasks:
 
 OK 1. **Eliminate deprecation warnings when running the server**
-2. **Implement deposit functionality**
+OK 2. **Implement deposit functionality**
    - In the profile page, add a form wherein the user can deposit an amount to his/her account.
 3. **Implement withdraw functionality**
    - In the profile page, add a form wherein the user can withdraw an amount to his/her account.
