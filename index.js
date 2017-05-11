@@ -39,29 +39,35 @@ app.get('/profile', requireSignedIn, function(req, res) {
 app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, 10);
-
 	const email = req.session.currentUser;
-	User.findOne({ where: { email: email } }).then(function(sender) {
-		User.findOne({ where: { email: recipient } }).then(function(receiver) {
-			if(receiver == null) {
-				req.flash('statusMessage', 'Transfer Error. User not found.');
-				res.redirect('/profile');
-			}
-			Account.findOne({ where: { user_id: sender.id } }).then(function(senderAccount) {
-				Account.findOne({ where: { user_id: receiver.id } }).then(function(receiverAccount) {
-					database.transaction(function(t) {
-						return senderAccount.update({
-							balance: senderAccount.balance - amount
-						}, { transaction: t }).then(function() {
-							return receiverAccount.update({
-								balance: receiverAccount.balance + amount
-							}, { transaction: t });
-						});
-					}).then(function() {
-						req.flash('statusMessage', 'Transferred ' + amount + ' to ' + recipient);
-						res.redirect('/profile');
-					});
+
+	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + email + "')";
+	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
+
+	database.query(query1, { model: Account }).then(function(sender) {
+		database.query(query2, { model: Account }).then(function(receiver) {
+			sender.balance = sender.map(function(sender){ return sender.balance });
+			sender.user_id = sender.map(function(sender){ return sender.user_id });
+			receiver.balance = receiver.map(function(receiver){ return receiver.balance });
+			receiver.user_id = receiver.map(function(receiver){ return receiver.user_id });
+
+			sender.balance = parseInt(sender.balance, 10);
+			receiver.balance = parseInt(receiver.balance, 10);
+			
+			database.transaction(function(t) {
+				return Account.update( {
+					balance: sender.balance - amount
+				}, { where: { user_id: sender.user_id }
+				}, { transaction: t }
+				).then(function() {
+					return Account.update( {
+						balance: receiver.balance + amount
+					}, { where: { user_id: receiver.user_id }
+					}, { transaction: t });
 				});
+			}).then(function() {
+				req.flash('statusMessage', 'Transferred ' + amount + ' to ' + recipient);
+				res.redirect('/profile');
 			});
 		});
 	});
