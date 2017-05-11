@@ -91,6 +91,29 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 	});
 });
 
+app.post('/withdraw', requireSignedIn, function(req, res) {
+	const amount = parseInt(req.body.amount, 10);
+
+	const email = req.session.currentUser;
+	User.findOne({ where: { email: email } }).then(function(user) {
+		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
+			if(userAccount != null) {
+				database.transaction(function(t) {
+					return userAccount.update({
+						balance: userAccount.balance - amount
+					});
+				}).then(function() {
+					req.flash('statusMessage', 'Withdrawed ' + amount);
+					res.redirect('/profile');
+				});
+			}else {
+				req.flash('statusMessage', 'Insufficient amount in account');
+				res.redirect('/profile');
+			}
+		});
+	});
+});
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
