@@ -21,7 +21,7 @@ app.use(flash());
 app.use(passport.initialize());
 
 app.use('/static', express.static('./static'));
-app.use(require('./auth-routes'));
+app.use(require('./routes/auth'));
 
 app.get('/', function(req, res) {
 	res.render('index.html');
@@ -43,6 +43,10 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 	const email = req.session.currentUser;
 	User.findOne({ where: { email: email } }).then(function(sender) {
 		User.findOne({ where: { email: recipient } }).then(function(receiver) {
+			if(receiver == null) {
+				req.flash('statusMessage', 'Transfer Error. User not found.');
+				res.redirect('/profile');
+			}
 			Account.findOne({ where: { user_id: sender.id } }).then(function(senderAccount) {
 				Account.findOne({ where: { user_id: receiver.id } }).then(function(receiverAccount) {
 					database.transaction(function(t) {
@@ -74,9 +78,6 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 					return userAccount.update({
 						balance: userAccount.balance + amount
 					});
-				}).then(function() {
-					req.flash('statusMessage', 'Deposited ' + amount);
-					res.redirect('/profile');
 				});
 			}else {
 				Account.create({
