@@ -29,11 +29,14 @@ router.post('/signup', function(req, res) {
                 email: email,
                 password: hashedPassword,
                 salt: salt
-            }, { transaction: t }).then(function() {
-                return Account.create({
+            }, { transaction: t });
+        }).then(function() {
+            User.findOne({ where: { email: email } }).then(function(newUser) {
+                Account.create({
                     balance: 0,
-                    user_id: user.id
-                }, { transaction: t });
+                    user_id: newUser.id
+                // }, { transaction: t });
+                });
             });
         }).then(function() {
             req.flash('statusMessage', 'Signed up successfully!');
