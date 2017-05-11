@@ -4,7 +4,6 @@ const cookieparser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const consolidate = require('consolidate');
-const passport = require('./config/passport');
 const database = require('./database');
 const User = require('./models').User;
 const Account = require('./models').Account;
@@ -18,10 +17,11 @@ app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));
 app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 app.use(flash());
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 app.use('/static', express.static('./static'));
 app.use(require('./routes/auth'));
+app.use(require('./routes/twitter'));
 
 app.get('/', function(req, res) {
 	res.render('index.html');
@@ -120,17 +120,6 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		});
 	});
 });
-
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', {
-        failureRedirect: '/'
-    }),
-    function(req, res) {
-        req.session.currentUser = req.user.email;
-        res.redirect('/profile');
-    }
-);
 
 function requireSignedIn(req, res, next) {
     if (!req.session.currentUser) {
