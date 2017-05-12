@@ -38,7 +38,7 @@ Tasks:
 
 Bonus Tasks:
 
-  - [ ] Make the dummy bank pages look good.
+  - [x] Make the dummy bank pages look good.
   - [x] Implement another social authentication besides Twitter
   - You can do signin with Google, Facebook, Github, etc.
 
