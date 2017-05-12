@@ -65,7 +65,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 				res.redirect('/profile');
 			}
 
-			if(receiver.user_id == null) {
+			if(receiver.user_id === null) {
 				req.flash('statusMessage', 'Recipient not found');
 				res.redirect('/profile');
 			}
@@ -97,20 +97,20 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 		res.redirect('/profile');
 	}
 
+	console.log("DEPOSIT " + amount);
+
 	const email = req.session.currentUser;
 	User.findOne({ where: { email: email } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
-			if(userAccount != null) {
-				database.transaction(function(t) {
-					return userAccount.update({
-						balance: userAccount.balance + amount
-					});
+			if(userAccount !== null) {
+				userAccount.update({
+					balance: userAccount.balance + amount
 				});
 			}else {
 				Account.create({
 					balance: amount,
 					user_id: user.id
-				})
+				});
 			}
 		}).then(function() {
 			req.flash('statusMessage', 'Deposited ' + amount);
@@ -130,7 +130,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 	const email = req.session.currentUser;
 	User.findOne({ where: { email: email } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
-			if(userAccount.balance >= amount) {
+			if(userAccount.balance >= amount || userAccount == null) {
 				database.transaction(function(t) {
 					return userAccount.update({
 						balance: userAccount.balance - amount

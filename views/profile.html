@@ -11,12 +11,12 @@
             <div id="center">
 
                 <div id="start">
-                    <p>{{ messages.statusMessage }}</p>
+                    <p class="statMsg isa_info">{{ messages.statusMessage }}</p>
 
                     {% if user.name == null %}
-                        <h1>{{ user.email }}</h1>
+                        <h1 class="statMsg">{{ user.email }}</h1>
                     {% else %}
-                        <h1>{{ user.name }}</h1>
+                        <h1 class="statMsg">{{ user.name }}</h1>
                     {% endif %}
 
                     <br><br>
@@ -25,31 +25,33 @@
                 </div>
 
                 
-                <div id="label-2">
+                <div>
                     <form action="/deposit" method="post">
-                        <div>
-                            <label for="amount">Deposit Amount</label><br>
-                            <input type="number" name="amount" id="amount">
+                        <div id="form-div">
+                            <!-- <label for="amount">Deposit Amount</label><br> -->
+                            <input type="number" name="amount" id="amount" placeholder="Deposit Amount" required>
+                            <br><br>
                             <button class="button-2">Deposit</button>
                         </div>
                     </form>
 
                     <form action="/withdraw" method="post">
-                        <div>
-                            <label for="amount">Withdraw Amount</label><br>
-                            <input type="number" name="amount" id="amount">
+                        <div id="form-div">
+                            <!-- <label for="amount">Withdraw Amount</label><br> -->
+                            <input type="number" name="amount" id="amount" placeholder="Withdraw Amount" required>
+                            <br><br>
                             <button class="button-2">Withdraw</button>
                         </div>
                     </form>
 
                     <form action="/transfer" method="post">
-            			<div>
-            				<label for="recipient">Transfer To</label><br>
-            				<input type="text" name="recipient" id="recipient">
-            			</div>
-            			<div>
-            				<label for="amount">Transfer Amount</label><br>
-            				<input type="number" name="amount" id="amount">
+            			<div id="form-div">
+            				<!-- <label for="recipient">Transfer To</label><br> -->
+            				<input type="text" name="recipient" id="recipient" placeholder="Recipient" required>
+            				<!-- <label for="amount">Transfer Amount</label><br> -->
+                            <br><br>
+            				<input type="number" name="amount" id="amount" placeholder="Transfer Amount" required>
+                            <br><br>
                             <button class="button-2">Transfer</button>
             			</div>
 

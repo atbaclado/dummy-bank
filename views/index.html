@@ -20,22 +20,21 @@
                 </div>
 
                 <form action="/signup" method="post">
-                    <div id="sign">
+                    <div id="form-div">
                         <h2>Sign Up</h2>
                         <h3>{{ messages.signUpMessage }}</h3>
-                        <div id="label-1">
-                            
+                        <div>                            
                             <div>
-                                <label for="email">Email</label><br>
-                                <input type="text" name="email" id="email">
+                                <!-- <label for="email">Email</label><br> -->
+                                <input type="text" name="email" id="email" placeholder="Email" required>
                             </div>
                             <div>
-                                <label for="password">Password</label><br>
-                                <input type="password" name="password" id="password">
+                                <!-- <label for="password">Password</label><br> -->
+                                <input type="password" name="password" id="password" placeholder="Password" required>
                             </div>
                             <div>
-                                <label for="confirmation">Confirm Password</label><br>
-                                <input type="password" name="confirmation" id="confirmation">
+                                <!-- <label for="confirmation">Confirm Password</label><br> -->
+                                <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" required>
                             </div>
                                 <button class="button-1">Sign Up</button>
                         </div>
@@ -45,26 +44,27 @@
 
 
                 <form action="/signin" method="post">
-                    <div id="sign">
+                    <div id="form-div">
                         <h2>Sign In</h2>
                         <h3>{{ messages.signInMessage }}</h3>
 
-                        <div id="label-1">
+                        <div>
                             <div>
-                                <label for="email">Email</label><br>
-                                <input type="text" name="email" id="email">
+                                <!-- <label for="email">Email</label><br> -->
+                                <input type="text" name="email" id="email" placeholder="Email" required>
                             </div>
                             <div>
-                                <label for="password">Password</label><br>
-                                <input type="password" name="password" id="password">
+                                <!-- <label for="password">Password</label><br> -->
+                                <input type="password" name="password" id="password" placeholder="Password" required>
                             </div>
 
                             <button class="button-1">Sign In</button><br>
-                            <label class="remember-me">
-                                <input type="checkbox" name="remember" value="yes">
-                                Remember me?
-                            </label>
-                            <div class="tray">
+                            <div id="form-div"">
+                                <label>
+                                    <input type="checkbox" name="remember" value="yes">
+                                    Remember me?
+                                </label>
+                                <br><br>
                                 <a href="/auth/twitter"><img class="icon tweet" src="images/twitter.png"></a>
                                 <a href="/auth/google"><img class="icon" src="images/google.png"></a>
                             </div>

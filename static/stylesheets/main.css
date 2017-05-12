@@ -28,8 +28,7 @@ body {
 	text-shadow: rgb(144, 145, 194) 4px 4px 4px;
 	font-weight:bold;
 	font-variant:small-caps;
-
-	margin-left: 8%;
+	text-align: center;
 }
 
 #vars {
@@ -40,23 +39,22 @@ body {
 	margin-left: 33%;
 }
 
-#label-1 {
-	margin-left: 13%;
-}
-
-#label-2{
-	margin-left: 18%;
+#form-div {
+	display: block;
+	text-align: center;
+	margin:0 auto;
 }
 
 #start {
 	margin-top: 1%;
-	margin-left: 30%;
+	/*margin-left: 30%;*/
+	text-align: center;
 }
 
 #start hr {
-	margin-left:-35%;
+	/*margin-left:-35%;*/
 	size:10px;
-	width: 125%;
+	width: 94%;
 }
 
 #sign {
@@ -92,6 +90,10 @@ body {
 	position: relative;
 }
 
+.statMsg {
+	text-align: center;
+}
+
 .icon {
 	width: 40px;
     height: 40px;
@@ -104,6 +106,13 @@ body {
 
 .tray {
 	margin-left: 17%;
+}
+
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+	padding:12px;
+	text-align: center;
 }
 
 .button-1 {
@@ -119,7 +128,9 @@ body {
 	background: #435058;
 	outline: none;
 
-	margin-left:17%;
+	display: block;
+	text-align: center;
+	margin:0 auto;
 }
 
 .button-1:hover {
@@ -171,10 +182,6 @@ div {
 label:not(.remember-me) {
     display: inline-block;
     min-width: 150px;
-}
-
-.remember-me {
-	margin-left: 15%;
 }
 
 input:not([type="checkbox"]) {
