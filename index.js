@@ -24,13 +24,19 @@ app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
 app.use(require('./routes/google'));
 
+var user = function retrieveSignedInUser(req,res,next) {
+	req.user = req.session.currentUser;
+	next();
+};
+
+app.use(user);
+
 app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
 app.get('/profile', requireSignedIn, function(req, res) {
-	const email = req.session.currentUser;
-	User.findOne({ where: { email: email } }).then(function(user) {
+	User.findOne({ where: { email: req.user } }).then(function(user) {
 		res.render('profile.html', {
 			user: user
 		});
@@ -40,14 +46,13 @@ app.get('/profile', requireSignedIn, function(req, res) {
 app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, 10);
-	const email = req.session.currentUser;
 
 	if(amount <= 0) {
 		req.flash('statusMessage', 'Invalid amount');
 		res.redirect('/profile');
 	}
 
-	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + email + "')";
+	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + req.user + "')";
 	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
 
 	database.query(query1, { model: Account }).then(function(sender) {
@@ -99,8 +104,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 
 	console.log("DEPOSIT " + amount);
 
-	const email = req.session.currentUser;
-	User.findOne({ where: { email: email } }).then(function(user) {
+	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
 				userAccount.update({
@@ -127,8 +131,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		res.redirect('/profile');
 	}
 
-	const email = req.session.currentUser;
-	User.findOne({ where: { email: email } }).then(function(user) {
+	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount.balance >= amount || userAccount == null) {
 				database.transaction(function(t) {
