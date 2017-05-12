@@ -64,6 +64,8 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 			sender.balance = parseInt(sender.balance, 10);
 			receiver.balance = parseInt(receiver.balance, 10);
+			sender.user_id = parseInt(sender.user_id, 10);
+			receiver.user_id = parseInt(receiver.user_id, 10);
 
 			if(sender.balance < amount) {
 				req.flash('statusMessage', 'Insufficient balance');
@@ -72,6 +74,11 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 			if(receiver.user_id === null) {
 				req.flash('statusMessage', 'Recipient not found');
+				res.redirect('/profile');
+			}
+
+			if(sender.user_id === receiver.user_id) {
+				req.flash('statusMessage', 'Transfer invalid');
 				res.redirect('/profile');
 			}
 			
