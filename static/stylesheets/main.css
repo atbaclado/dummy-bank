@@ -47,12 +47,10 @@ body {
 
 #start {
 	margin-top: 1%;
-	/*margin-left: 30%;*/
 	text-align: center;
 }
 
 #start hr {
-	/*margin-left:-35%;*/
 	size:10px;
 	width: 94%;
 }
@@ -178,7 +176,6 @@ div {
     padding: 5px 0;
 }
 
-
 label:not(.remember-me) {
     display: inline-block;
     min-width: 150px;
@@ -188,7 +185,6 @@ input:not([type="checkbox"]) {
     width: 300px;
     padding: 0.5em;
 }
-
 
 button {
     padding: 0.5em 1em;

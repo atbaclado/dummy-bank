@@ -17,7 +17,6 @@ app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));
 app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 app.use(flash());
-// app.use(passport.initialize());
 
 app.use(express.static('./static'));
 app.use(require('./routes/auth'));
