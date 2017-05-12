@@ -22,6 +22,7 @@ app.use(flash());
 app.use('/static', express.static('./static'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
+app.use(require('./routes/google'));
 
 app.get('/', function(req, res) {
 	res.render('index.html');
@@ -41,6 +42,11 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, 10);
 	const email = req.session.currentUser;
 
+	if(amount <= 0) {
+		req.flash('statusMessage', 'Invalid amount');
+		res.redirect('/profile');
+	}
+
 	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + email + "')";
 	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
 
@@ -53,6 +59,16 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 			sender.balance = parseInt(sender.balance, 10);
 			receiver.balance = parseInt(receiver.balance, 10);
+
+			if(sender.balance < amount) {
+				req.flash('statusMessage', 'Insufficient balance');
+				res.redirect('/profile');
+			}
+
+			if(receiver.user_id == null) {
+				req.flash('statusMessage', 'Recipient not found');
+				res.redirect('/profile');
+			}
 			
 			database.transaction(function(t) {
 				return Account.update( {
@@ -75,6 +91,11 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 app.post('/deposit', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, 10);
+
+	if(amount <= 0) {
+		req.flash('statusMessage', 'Invalid amount');
+		res.redirect('/profile');
+	}
 
 	const email = req.session.currentUser;
 	User.findOne({ where: { email: email } }).then(function(user) {
@@ -101,10 +122,15 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 app.post('/withdraw', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, 10);
 
+	if(amount <= 0) {
+		req.flash('statusMessage', 'Invalid amount');
+		res.redirect('/profile');
+	}
+
 	const email = req.session.currentUser;
 	User.findOne({ where: { email: email } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
-			if(userAccount != null) {
+			if(userAccount.balance >= amount) {
 				database.transaction(function(t) {
 					return userAccount.update({
 						balance: userAccount.balance - amount
@@ -114,7 +140,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 					res.redirect('/profile');
 				});
 			}else {
-				req.flash('statusMessage', 'Insufficient amount in account');
+				req.flash('statusMessage', 'Insufficient balance');
 				res.redirect('/profile');
 			}
 		});

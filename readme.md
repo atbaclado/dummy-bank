@@ -24,8 +24,7 @@ Tasks:
    - Make sure authentication still works.
 8. **Add `name` field to the `User` model.**
    - This field will contain the user's full name retrieved from Twitter sign in.
-9. **Display user's name in profile page**
-   - If the name is not available, display email instead.
+9.   - If the name is not available, display email instead.
 10. **Optimize the database queries in the `/transfer` route**
    - There are four queries that could be optimized:
      - Getting the sender `User` instance
@@ -40,7 +39,7 @@ Tasks:
 Bonus Tasks:
 
   - [ ] Make the dummy bank pages look good.
-  - [ ] Implement another social authentication besides Twitter
+  - [x] Implement another social authentication besides Twitter
   - You can do signin with Google, Facebook, Github, etc.
 
 
