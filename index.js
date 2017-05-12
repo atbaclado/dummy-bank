@@ -19,7 +19,7 @@ app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cooki
 app.use(flash());
 // app.use(passport.initialize());
 
-app.use('/static', express.static('./static'));
+app.use(express.static('./static'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
 app.use(require('./routes/google'));

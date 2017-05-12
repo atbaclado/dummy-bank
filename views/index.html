@@ -1,56 +1,77 @@
-<!doctype html>
+<!-- <!doctype html> -->
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Dummy Bank</title>
-        <link rel="stylesheet" href="/static/stylesheets/main.css">
+        <link rel="stylesheet" href="stylesheets/main.css">
     </head>
 
     <body>
-        <h1>Welcome to Dummy Bank!</h1>
+        <div id="margin">
+            
+            <div id="center">
+                <div id="wdb">
+                    <h1>Welcome to Dummy Bank!</h1>
+                </div>
+                <hr><br>
 
-        <p>{{ messages.statusMessage }}</p>
+                <div id="vars">
+                    <p>{{ messages.statusMessage }}</p>
+                </div>
 
-        <form action="/signup" method="post">
-            <h2>Sign Up</h2>
-            <h3>{{ messages.signUpMessage }}</h3>
+                <form action="/signup" method="post">
+                    <div id="sign">
+                        <h2>Sign Up</h2>
+                        <h3>{{ messages.signUpMessage }}</h3>
+                        <div id="label-1">
+                            
+                            <div>
+                                <label for="email">Email</label><br>
+                                <input type="text" name="email" id="email">
+                            </div>
+                            <div>
+                                <label for="password">Password</label><br>
+                                <input type="password" name="password" id="password">
+                            </div>
+                            <div>
+                                <label for="confirmation">Confirm Password</label><br>
+                                <input type="password" name="confirmation" id="confirmation">
+                            </div>
+                                <button class="button-1">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
 
-            <div>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
+
+
+                <form action="/signin" method="post">
+                    <div id="sign">
+                        <h2>Sign In</h2>
+                        <h3>{{ messages.signInMessage }}</h3>
+
+                        <div id="label-1">
+                            <div>
+                                <label for="email">Email</label><br>
+                                <input type="text" name="email" id="email">
+                            </div>
+                            <div>
+                                <label for="password">Password</label><br>
+                                <input type="password" name="password" id="password">
+                            </div>
+
+                            <button class="button-1">Sign In</button><br>
+                            <label class="remember-me">
+                                <input type="checkbox" name="remember" value="yes">
+                                Remember me?
+                            </label>
+                            <div class="tray">
+                                <a href="/auth/twitter"><img class="icon tweet" src="images/twitter.png"></a>
+                                <a href="/auth/google"><img class="icon" src="images/google.png"></a>
+                            </div>
+                        </div>
+                    </div>                
+                </form>
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </div>
-            <div>
-                <label for="confirmation">Confirm Password</label>
-                <input type="password" name="confirmation" id="confirmation">
-            </div>
-
-            <button>Sign Up</button>
-        </form>
-
-        <form action="/signin" method="post">
-            <h2>Sign In</h2>
-            <h3>{{ messages.signInMessage }}</h3>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </div>
-
-            <button>Sign In</button>
-            <label class="remember-me">
-                <input type="checkbox" name="remember" value="yes">
-                Remember me?
-            </label>
-            <a href="/auth/twitter">Sign In with Twitter</a>
-            <a href="/auth/google">Sign In with Google</a>
-        </form>
+         </div>
     </body>
 </html>
