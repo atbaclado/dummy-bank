@@ -1,4 +1,6 @@
 const assert = require('chai').assert;
+const http = require("http"); 
+const orm = require("orm");
 
 describe('initial setup', function() {
     describe('should install dependencies and save then to package.json:', function() {
@@ -22,6 +24,20 @@ describe('initial setup', function() {
         it('"consolidate", to make nunjucks compatible with express', function() {
             assert.property(dependencies, 'consolidate');
             assert.doesNotThrow(() => require('consolidate'));
+        });
+
+        it('"pg", database for storing information', function() {
+            assert.property(dependencies, 'pg');
+            assert.doesNotThrow(() => require('pg'));
+        });
+    });
+
+    describe('database is found', function () {
+        it('bankdb should have been created', function () {
+            orm.connect("postgres://postgres:postgres@localhost:5432/bankdb", function (err, db) {
+                if (err) throw err;
+                done();
+            });
         });
     });
 });

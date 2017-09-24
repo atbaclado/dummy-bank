@@ -10,8 +10,8 @@ const Account = require('./models').Account;
 
 const app = express();
 
-app.engine('html', consolidate.nunjucks);
 app.set('views', './views');
+app.engine('html', consolidate.nunjucks);
 
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));
