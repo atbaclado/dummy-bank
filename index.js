@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
-app.get('/profile', requireSignedIn, function(req, res) {
+app.get('/profile', function(req, res) {
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		res.render('profile.html', {
 			user: user

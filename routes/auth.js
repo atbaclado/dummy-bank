@@ -20,7 +20,7 @@ router.post('/signup', function(req, res) {
             req.flash('signUpMessage', 'Passwords do not match.');
 	        return res.redirect('/');
 	    }
-
+        
         const salt = bcrypt.genSaltSync();
         const hashedPassword = bcrypt.hashSync(password, salt);
 
@@ -53,7 +53,7 @@ router.post('/signin', function(req, res) {
             req.flash('signInMessage', 'Incorrect email.');
             return res.redirect('/');
         }
-
+        
 		const match = bcrypt.compareSync(password, user.password);
 		if (!match) {
 			req.flash('signInMessage', 'Incorrect password.');
