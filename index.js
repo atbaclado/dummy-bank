@@ -19,6 +19,7 @@ app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cooki
 app.use(flash());
 
 app.use(express.static('./static'));
+// app.use('./static', express.static('./'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
 app.use(require('./routes/google'));

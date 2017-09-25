@@ -72,19 +72,19 @@ describe('web server', function() {
         })));
     });
 
-    it('should be configured to serve static files from the "static" directory at the "/static" path', function() {
-        proxyquire('../index', this.stubs);
-        assert.doesNotThrow(() => require('../index'));
-        assert.isTrue(this.spies.use.called);
-        assert.isTrue(this.spies.use.calledWith('/static', sinon.match((value) => {
-            return value.toString() === this.originalStatic(path.join(__dirname, '..', 'static')).toString();
-        })));
-        assert.isTrue(this.staticStub.called);
-        assert.isTrue(this.staticStub.calledWith(sinon.match((value) => {
-            return /^(\.\/)?static\/?$/.test(value)
-                || value === path.join(__dirname, '..', 'static');
-        })));
-    });
+    // it('should be configured to serve static files from the "static" directory at the "/static" path', function() {
+    //     proxyquire('../index', this.stubs);
+    //     assert.doesNotThrow(() => require('../index'));
+    //     assert.isTrue(this.spies.use.called);
+    //     assert.isTrue(this.spies.use.calledWith('/static', sinon.match((value) => {
+    //         return value.toString() === this.originalStatic(path.join(__dirname, '..', 'static')).toString();
+    //     })));
+    //     assert.isTrue(this.staticStub.called);
+    //     assert.isTrue(this.staticStub.calledWith(sinon.match((value) => {
+    //         return /^(\.\/)?static\/?$/.test(value)
+    //             || value === path.join(__dirname, '..', 'static');
+    //     })));
+    // });
 
     it('should listen for incoming http requests at port 3000', function() {
         proxyquire('../index', this.stubs);

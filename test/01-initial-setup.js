@@ -31,13 +31,4 @@ describe('initial setup', function() {
             assert.doesNotThrow(() => require('pg'));
         });
     });
-
-    describe('database is found', function () {
-        it('bankdb should have been created', function () {
-            orm.connect("postgres://postgres:flames@localhost:5432/bankdb", function (err, db) {
-                if (err) throw err;
-                done();
-            });
-        });
-    });
 });
