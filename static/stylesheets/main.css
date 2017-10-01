@@ -22,7 +22,7 @@ body {
 	width: 94.5%;
 }
 
-#wdb {
+#wtdb {
 	color: rgb(46, 68, 97);
 	font-size: 2em;
 	text-shadow: rgb(144, 145, 194) 4px 4px 4px;
@@ -31,7 +31,7 @@ body {
 	text-align: center;
 }
 
-#vars {
+#status_message {
 	font-family:Consolas, monospace;
 	font-size:14px;
 	color:#000000;
