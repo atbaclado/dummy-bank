@@ -9,6 +9,7 @@ const User = require('./models').User;
 const Account = require('./models').Account;
 
 const app = express();
+const radix = 10;
 
 app.set('views', './views');
 app.engine('html', consolidate.nunjucks);
@@ -19,7 +20,6 @@ app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cooki
 app.use(flash());
 
 app.use(express.static('./static'));
-// app.use('./static', express.static('./'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
 app.use(require('./routes/google'));
@@ -45,7 +45,7 @@ app.get('/profile', function(req, res) {
 
 app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
-	const amount = parseInt(req.body.amount, 10);
+	const amount = parseInt(req.body.amount, radix);
 
 	if(amount <= 0) {
 		req.flash('statusMessage', 'Invalid amount');
@@ -62,10 +62,10 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 			receiver.balance = receiver.map(function(receiver){ return receiver.balance });
 			receiver.user_id = receiver.map(function(receiver){ return receiver.user_id });
 
-			sender.balance = parseInt(sender.balance, 10);
-			receiver.balance = parseInt(receiver.balance, 10);
-			sender.user_id = parseInt(sender.user_id, 10);
-			receiver.user_id = parseInt(receiver.user_id, 10);
+			sender.balance = parseInt(sender.balance, radix);
+			receiver.balance = parseInt(receiver.balance, radix);
+			sender.user_id = parseInt(sender.user_id, radix);
+			receiver.user_id = parseInt(receiver.user_id, radix);
 
 			if(sender.balance < amount) {
 				req.flash('statusMessage', 'Insufficient balance');
@@ -102,7 +102,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 });
 
 app.post('/deposit', requireSignedIn, function(req, res) {
-	const amount = parseInt(req.body.amount, 10);
+	const amount = parseInt(req.body.amount, radix);
 
 	if(amount <= 0) {
 		req.flash('statusMessage', 'Invalid amount');
@@ -131,7 +131,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 });
 
 app.post('/withdraw', requireSignedIn, function(req, res) {
-	const amount = parseInt(req.body.amount, 10);
+	const amount = parseInt(req.body.amount, radix);
 
 	if(amount <= 0) {
 		req.flash('statusMessage', 'Invalid amount');
