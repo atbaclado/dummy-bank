@@ -147,12 +147,11 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 					});
 				}).then(function() {
 					req.flash('statusMessage', 'Withdrawed ' + amount);
-					res.redirect('/profile');
 				});
 			}else {
 				req.flash('statusMessage', 'Insufficient balance');
-				res.redirect('/profile');
 			}
+			res.redirect('/profile');
 		});
 	});
 });
