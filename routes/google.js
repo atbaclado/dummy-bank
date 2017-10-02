@@ -4,6 +4,7 @@ const router = require('./auth');
 
 router.use(passport.initialize());
 
+/**/
 router.get('/auth/google',
   passport.authenticate('google', { scope: 
   	[ 'https://www.googleapis.com/auth/plus.login',

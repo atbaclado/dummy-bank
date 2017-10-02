@@ -1,5 +1,6 @@
 'use strict';
 
+/* add column */
 module.exports = {
   up: function (queryInterface, Sequelize) {
     queryInterface.addColumn('users', 'name', {
@@ -7,6 +8,7 @@ module.exports = {
     });
   },
 
+/* revert the last database scheme */
   down: function (queryInterface, Sequelize) {
     queryInterface.removeColumn('users', 'name');
   }

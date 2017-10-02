@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+    /* Migrations is used create the needed table in the database */
     up: function (migration, Sequelize) {
         return migration.createTable('accounts', {
             id: {
@@ -29,6 +30,7 @@ module.exports = {
         });
     },
 
+    /* to undo the created table or database scheme */
     down: function (migration, Sequelize) {
         return migration.dropTable('accounts');
     }
