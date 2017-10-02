@@ -1,3 +1,4 @@
+/* importing packages */
 const express = require('express');
 const bodyparser = require('body-parser');
 const cookieparser = require('cookie-parser');
@@ -9,8 +10,12 @@ const User = require('./models').User;
 const Account = require('./models').Account;
 
 const app = express();
+
+/* used for string parsing */
 const radix = 10;
 
+
+/* syntax for importing and using static files */
 app.set('views', './views');
 app.engine('html', consolidate.nunjucks);
 
@@ -43,6 +48,8 @@ app.get('/profile', function(req, res) {
 	});
 });
 
+
+/* transfering money to other account, needs two users for the transaction and the amount of money to transafer */
 app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, radix);
@@ -55,6 +62,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + req.user + "')";
 	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
 
+    /* sql injection */
 	database.query(query1, { model: Account }).then(function(sender) {
 		database.query(query2, { model: Account }).then(function(receiver) {
 			sender.balance = sender.map(function(sender){ return sender.balance });
@@ -101,6 +109,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 	});
 });
 
+/* deposits amount to a certain account */
 app.post('/deposit', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, radix);
 
