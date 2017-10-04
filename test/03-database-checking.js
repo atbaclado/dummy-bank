@@ -5,7 +5,7 @@ const pg = require("pg");
 
 var connestString = "postgres://postgres:postgres@localhost:5432/bankdb";
 describe('Database setup', function() {
-    //database stuffs (how to get the value of connectionURL from database.js? para uniform nalang unta pud sila)
+    
     describe('Database is found', function () {
         it('bankdb should be created already', function (done) {
             orm.connect(connestString, function (err) {
