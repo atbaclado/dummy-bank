@@ -67,6 +67,10 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 			receiver.balance = receiver.map(function(receiver){ return receiver.balance });
 			receiver.user_id = receiver.map(function(receiver){ return receiver.user_id });
 
+			if(!Array.isArray(receiver.user_id) || !receiver.user_id.length) {
+				req.flash('statusMessage', 'Recipient not found');
+			}
+
 			sender.balance = parseInt(sender.balance, radix);
 			receiver.balance = parseInt(receiver.balance, radix);
 			sender.user_id = parseInt(sender.user_id, radix);
@@ -74,17 +78,10 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 			if(sender.balance < amount) {
 				req.flash('statusMessage', 'Insufficient balance');
-				res.redirect('/profile');
-			}
-
-			if(receiver.user_id === null) {
-				req.flash('statusMessage', 'Recipient not found');
-				res.redirect('/profile');
 			}
 
 			if(sender.user_id === receiver.user_id) {
 				req.flash('statusMessage', 'Transfer invalid');
-				res.redirect('/profile');
 			}
 			
 			database.transaction(function(t) {
@@ -100,8 +97,9 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 				});
 			}).then(function() {
 				req.flash('statusMessage', 'Transferred ' + amount + ' to ' + recipient);
-				res.redirect('/profile');
 			});
+
+			res.redirect('/profile');
 		});
 	});
 });
