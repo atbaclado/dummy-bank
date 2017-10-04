@@ -49,7 +49,7 @@ app.get('/profile', function(req, res) {
 });
 
 
-/* transfering money to other account, needs two users for the transaction and the amount of money to transafer */
+/* transfering money to other account, needs two users for the transaction and the amount of money to transfer */
 app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, radix);
@@ -117,9 +117,9 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 		req.flash('statusMessage', 'Invalid amount');
 		res.redirect('/profile');
 	}
-
-	console.log("DEPOSIT " + amount);
-
+	
+	
+    /* sql injection using different syntax, using the  */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
@@ -139,6 +139,8 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 	});
 });
 
+
+/* Transaction withdraw */
 app.post('/withdraw', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, radix);
 
@@ -146,7 +148,9 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		req.flash('statusMessage', 'Invalid amount');
 		res.redirect('/profile');
 	}
-
+	
+	
+    /* sql injection using different syntax, using the  */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount.balance >= amount || userAccount == null) {
@@ -169,6 +173,7 @@ function requireSignedIn(req, res, next) {
     if (!req.session.currentUser) {
         return res.redirect('/');
     }
+    /* next if for what Aljomai? haha */
     next();
 }
 
