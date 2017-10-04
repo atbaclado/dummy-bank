@@ -15,7 +15,6 @@ const app = express();
 /* used for string parsing */
 const radix = 10;
 
-
 /* syntax for importing and using static files */
 app.set('views', './views');
 app.engine('html', consolidate.nunjucks);
@@ -55,10 +54,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, radix);
 
-	if(amount <= 0) {
-		req.flash('statusMessage', 'Invalid amount');
-		res.redirect('/profile');
-	}
+	checkAmount(amount, req, res);
 
 	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + req.user + "')";
 	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
@@ -114,11 +110,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 app.post('/deposit', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, radix);
 
-	if(amount <= 0) {
-		req.flash('statusMessage', 'Invalid amount');
-		res.redirect('/profile');
-	}
-	
+	checkAmount(amount, req, res);
 	
     /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
@@ -145,10 +137,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 app.post('/withdraw', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, radix);
 
-	if(amount <= 0) {
-		req.flash('statusMessage', 'Invalid amount');
-		res.redirect('/profile');
-	}
+	checkAmount(amount, req, res);
 	
     /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
@@ -168,6 +157,13 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		});
 	});
 });
+
+function checkAmount(amount, req, res) {
+	if(amount <= 0) {
+		req.flash('statusMessage', 'Invalid amount');
+		res.redirect('/profile');
+	}
+}
 
 function requireSignedIn(req, res, next) {
     if (!req.session.currentUser) {
