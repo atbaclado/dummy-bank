@@ -5,10 +5,11 @@ const cookieparser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const consolidate = require('consolidate');
+
+/* importing own packages (./) for start destination */
 const database = require('./database');
 const User = require('./models').User;
 const Account = require('./models').Account;
-
 const app = express();
 
 /* used for string parsing */
@@ -119,7 +120,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 	}
 	
 	
-    /* sql injection using different syntax, using the  */
+    /* sql injection using different syntax, using the */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
@@ -148,7 +149,6 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		req.flash('statusMessage', 'Invalid amount');
 		res.redirect('/profile');
 	}
-	
 	
     /* sql injection using different syntax, using the  */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
