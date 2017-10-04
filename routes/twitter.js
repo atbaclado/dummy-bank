@@ -4,7 +4,7 @@ const router = require('./auth');
 
 router.use(passport.initialize());
 
-/*  */
+/* authentication using twitter accounts  */
 
 router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get('/auth/twitter/callback',
