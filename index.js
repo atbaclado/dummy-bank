@@ -120,7 +120,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 	}
 	
 	
-    /* sql injection using different syntax, using the */
+    /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
@@ -150,7 +150,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 		res.redirect('/profile');
 	}
 	
-    /* sql injection using different syntax, using the  */
+    /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount.balance >= amount || userAccount == null) {
