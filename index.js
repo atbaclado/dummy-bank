@@ -173,7 +173,7 @@ function requireSignedIn(req, res, next) {
     if (!req.session.currentUser) {
         return res.redirect('/');
     }
-    /* next if for what Aljomai? haha */
+    /* next is needed for middleware functions */
     next();
 }
 
