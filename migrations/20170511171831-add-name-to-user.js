@@ -8,7 +8,7 @@ module.exports = {
     });
   },
 
-/* revert the last database scheme */
+  /* revert the last database scheme */
   down: function (queryInterface, Sequelize) {
     queryInterface.removeColumn('users', 'name');
   }

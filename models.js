@@ -14,7 +14,7 @@ const User = database.define('users', {
 		allowNull: false
 	},
     name: {
-        type: Sequelize.STRING
+      type: Sequelize.STRING
     },
 	password: {
 		type: Sequelize.STRING,
@@ -25,25 +25,25 @@ const User = database.define('users', {
 });
 
 const Account = database.define('accounts', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-    },
-    balance: {
-        type: Sequelize.FLOAT,
-        defaultValue: 0
-    },
-    user_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'users',
-            key: 'id'
-        }
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
+  balance: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0
+  },
+  user_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: 'users',
+      key: 'id'
     }
+  }
 }, {
-    timestamps: true
+  timestamps: true
 });
 
 database.sync();

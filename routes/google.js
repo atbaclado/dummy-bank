@@ -12,13 +12,13 @@ router.get('/auth/google',
 ));
  
 router.get( '/auth/google/callback', 
-    passport.authenticate( 'google', {
-        failureRedirect: '/auth/google/failure'
-    }),
-    function(req, res) {
-        req.session.currentUser = req.user.email;
-        res.redirect('/profile');
-    }
+  passport.authenticate( 'google', {
+    failureRedirect: '/auth/google/failure'
+  }),
+  function(req, res) {
+    req.session.currentUser = req.user.email;
+    res.redirect('/profile');
+  }
 );
 
 module.exports = router;

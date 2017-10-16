@@ -110,7 +110,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 
 	checkAmount(amount, req, res);
 	
-    /* sql injection using different syntax, using the Models User and Account */
+  /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
@@ -137,7 +137,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 
 	checkAmount(amount, req, res);
 	
-    /* sql injection using different syntax, using the Models User and Account */
+  /* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount.balance >= amount || userAccount == null) {
@@ -164,11 +164,11 @@ function checkAmount(amount, req, res) {
 }
 
 function requireSignedIn(req, res, next) {
-    if (!req.session.currentUser) {
-        return res.redirect('/');
-    }
-    /* next is needed for middleware functions */
-    next();
+  if (!req.session.currentUser) {
+      return res.redirect('/');
+  }
+  /* next is needed for middleware functions */
+  next();
 }
 
 app.listen(3000, function() {
