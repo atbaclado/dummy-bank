@@ -8,11 +8,12 @@ const router = new express.Router();
 
 /* sign up transaction */
 router.post('/signup', function(req, res) {
+
 	const email = req.body.email;
   const password = req.body.password;
   const confirmation = req.body.confirmation;
 
-    /* checks if the email and password already exists in the database */
+  /* checks if the email and password already exists in the database */
 	User.findOne({ where: { email: email } }).then(function(user) {
     if (user !== null) {
       req.flash('signUpMessage', 'Email is already in use.');
@@ -33,23 +34,28 @@ router.post('/signup', function(req, res) {
         email: email,
         password: hashedPassword,
         salt: salt
-      }, { transaction: t }
-      ).then(function(user) {
+      }, { 
+        transaction: t 
+      }).then(function(user) {
         return Account.create({
           balance: 0,
           user_id: user.id
-        }, { transaction: t });
+        }, { 
+          transaction: t 
+        });
       });
     }).then(function() {
       req.flash('statusMessage', 'Signed up successfully!');
       res.redirect('/profile');
     });
   });
+
 });
 
 
 /* sign in transaction */
 router.post('/signin', function(req, res) {
+
 	const email = req.body.email;
   const password = req.body.password;
 	const remember = req.body.remember;
@@ -77,6 +83,7 @@ router.post('/signin', function(req, res) {
 		}
 		res.redirect('/profile');
   });
+  
 });
 
 router.get('/signout', function(req, res) {

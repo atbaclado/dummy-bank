@@ -51,6 +51,7 @@ app.get('/profile', function(req, res) {
 
 /* transfering money to other account, needs two users for the transaction and the amount of money to transfer */
 app.post('/transfer', requireSignedIn, function(req, res) {
+
 	const recipient = req.body.recipient;
 	const amount = parseInt(req.body.amount, radix);
 
@@ -102,11 +103,13 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 			res.redirect('/profile');
 		});
 	});
+
 });
 
 /* deposits amount to a certain account */
 app.post('/deposit', requireSignedIn, function(req, res) {
 	const amount = parseInt(req.body.amount, radix);
+
 
 	checkAmount(amount, req, res);
 	
@@ -128,11 +131,13 @@ app.post('/deposit', requireSignedIn, function(req, res) {
 			res.redirect('/profile');
 		});
 	});
+
 });
 
 
 /* Transaction withdraw */
 app.post('/withdraw', requireSignedIn, function(req, res) {
+
 	const amount = parseInt(req.body.amount, radix);
 
 	checkAmount(amount, req, res);
@@ -154,6 +159,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 			res.redirect('/profile');
 		});
 	});
+  
 });
 
 function checkAmount(amount, req, res) {

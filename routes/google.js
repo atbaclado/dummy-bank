@@ -6,9 +6,12 @@ router.use(passport.initialize());
 
 /* authentication using google account */
 router.get('/auth/google',
-  passport.authenticate('google', { scope: 
-  	[ 'https://www.googleapis.com/auth/plus.login',
-  	, 'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
+  passport.authenticate('google', { 
+    scope:
+      [ 'https://www.googleapis.com/auth/plus.login',
+        'https://www.googleapis.com/auth/plus.profile.emails.read' 
+      ] 
+    }
 ));
  
 router.get( '/auth/google/callback', 
