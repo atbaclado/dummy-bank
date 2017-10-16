@@ -18,12 +18,10 @@ const radix = 10;
 /* syntax for importing and using static files */
 app.set('views', './views');
 app.engine('html', consolidate.nunjucks);
-
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));
 app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 app.use(flash());
-
 app.use(express.static('./static'));
 app.use(require('./routes/auth'));
 app.use(require('./routes/twitter'));
@@ -57,8 +55,10 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 	checkAmount(amount, req, res);
 
-	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + req.user + "')";
-	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email = " + "'" + recipient + "')";
+	var query1 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email=" +
+    "'" + req.user + "')";
+	var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email=" +
+    "'" + recipient + "')";
 
     /* sql injection */
 	database.query(query1, { model: Account }).then(function(sender) {
@@ -159,7 +159,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 			res.redirect('/profile');
 		});
 	});
-  
+
 });
 
 function checkAmount(amount, req, res) {
