@@ -108,12 +108,12 @@ app.post('/transfer', requireSignedIn, function(req, res) {
 
 /* deposits amount to a certain account */
 app.post('/deposit', requireSignedIn, function(req, res) {
+    
 	const amount = parseInt(req.body.amount, radix);
-
-
+	
 	checkAmount(amount, req, res);
 	
-  /* sql injection using different syntax, using the Models User and Account */
+	/* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount !== null) {
@@ -142,7 +142,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 
 	checkAmount(amount, req, res);
 	
-  /* sql injection using different syntax, using the Models User and Account */
+	/* sql injection using different syntax, using the Models User and Account */
 	User.findOne({ where: { email: req.user } }).then(function(user) {
 		Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
 			if(userAccount.balance >= amount || userAccount == null) {
