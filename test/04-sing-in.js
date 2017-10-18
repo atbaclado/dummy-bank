@@ -1,7 +1,7 @@
-const assert  = require('chai').assert;
-const axios   = require('axios');
+const assert = require('chai').assert;
+const axios = require('axios');
 const cheerio = require('cheerio');
-const qs      = require('qs');
+const qs = require('qs');
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
