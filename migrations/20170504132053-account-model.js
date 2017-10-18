@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  
   // Migrations is used to create the needed table in the database
   up: function (migration, Sequelize) {
     return migration.createTable('accounts', {
