@@ -25,14 +25,16 @@ describe('route: /signup', function() {
   it('should identify if email already in use', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
-    // const $ = cheerio.load(response.data);
-    // assert.equal($('h3#signupMsg').text(), 'Email is already in use.');
+
+    /*const $ = cheerio.load(response.data);
+    assert.equal($('h3#signupMsg').text(), 'Email is already in use.');*/
   });
 
   it('should identify passwords do not match', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':'flames@gmail.com','password':'atbaclado', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
-    // const $ = cheerio.load(response.data);
-    // assert.equal($('h3#signupMsg').text(), 'Passwords do not match.');
+    
+   /* const $ = cheerio.load(response.data);
+    assert.equal($('h3#signupMsg').text(), 'Passwords do not match.');*/
   });
 });

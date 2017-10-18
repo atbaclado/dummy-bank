@@ -3,8 +3,7 @@ const passport = require('../config/passport');
 const router = require('./auth');
 
 router.use(passport.initialize());
-
-/* authentication using google account */
+// authentication using google account 
 router.get('/auth/google',
   passport.authenticate('google', { 
     scope:
