@@ -68,6 +68,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
       receiver.balance = receiver.map(function(receiver){ return receiver.balance });
       receiver.user_id = receiver.map(function(receiver){ return receiver.user_id });
 
+      // receiver user account doesn't exist
       if(!Array.isArray(receiver.user_id) || !receiver.user_id.length) {
         req.flash('statusMessage', 'Recipient not found');
       }
@@ -77,10 +78,12 @@ app.post('/transfer', requireSignedIn, function(req, res) {
       sender.user_id = parseInt(sender.user_id, radix);
       receiver.user_id = parseInt(receiver.user_id, radix);
 
+      // sender has not enough balance to transfer amount
       if(sender.balance < amount) {
         req.flash('statusMessage', 'Insufficient balance');
       }
 
+      // sender transfers money to himself
       if(sender.user_id === receiver.user_id) {
         req.flash('statusMessage', 'Transfer invalid');
       }
@@ -115,6 +118,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
   // sql injection using different syntax, using the Models User and Account 
   User.findOne({ where: { email: req.user } }).then(function(user) {
     Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
+      // user must have an account to deposit or else create one
       if(userAccount !== null) {
         userAccount.update({
           balance: userAccount.balance + amount
@@ -142,7 +146,8 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
   // sql injection using different syntax, using the Models User and Account
   User.findOne({ where: { email: req.user } }).then(function(user) {
     Account.findOne({ where: { user_id: user.id } }).then(function(userAccount) {
-      if(userAccount.balance >= amount || userAccount == null) {
+      // user must have an account and a sufficient balance
+      if(userAccount.balance >= amount && userAccount != null) {
         database.transaction(function(t) {
           return userAccount.update({
             balance: userAccount.balance - amount
@@ -159,6 +164,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
 }); // end: withdraw transaction routine
 
 function checkAmount(amount, req, res) {
+  // no amount must be negative
   if(amount <= 0) {
     req.flash('statusMessage', 'Invalid amount');
     res.redirect('/profile');
@@ -166,6 +172,7 @@ function checkAmount(amount, req, res) {
 }
 
 function requireSignedIn(req, res, next) {
+  // no user is stored in cookies
   if (!req.session.currentUser) {
     return res.redirect('/');
   }
