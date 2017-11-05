@@ -3,6 +3,7 @@ const http = require("http");
 const orm = require("orm");
 const pg = require("pg"); 
 
+// format: "database://user:password@host:port/databasename"
 var connestString = "postgres://postgres:postgres@localhost:5432/bankdb";
 
 describe('Database setup', function() {
