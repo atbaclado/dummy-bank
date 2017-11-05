@@ -16,7 +16,6 @@ describe('Database setup', function() {
     });
   });
 
-
   var knex = require('knex')({
     client: 'pg',
     version: '6.4.2',
@@ -93,4 +92,4 @@ describe('Database setup', function() {
       })
     });
   });
-});
+}); // end: database set-up checking

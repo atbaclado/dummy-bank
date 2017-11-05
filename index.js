@@ -60,7 +60,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
   var query2 = "SELECT user_id, balance FROM accounts WHERE user_id IN (SELECT id FROM users WHERE email=" +
     "'" + recipient + "')";
 
-  // sql injection
+  // query for finding the sender and receiver accounts for the transaction
   database.query(query1, { model: Account }).then(function(sender) {
     database.query(query2, { model: Account }).then(function(receiver) {
       sender.balance = sender.map(function(sender){ return sender.balance });
@@ -103,8 +103,7 @@ app.post('/transfer', requireSignedIn, function(req, res) {
       res.redirect('/profile');
     });
   });
-
-});
+}); // end: transfer transaction routine
 
 // deposits amount to a certain account
 app.post('/deposit', requireSignedIn, function(req, res) {
@@ -131,8 +130,7 @@ app.post('/deposit', requireSignedIn, function(req, res) {
       res.redirect('/profile');
     });
   });
-
-});
+}); // end:  deposit transaction routine
 
 // Transaction withdraw 
 app.post('/withdraw', requireSignedIn, function(req, res) {
@@ -158,8 +156,7 @@ app.post('/withdraw', requireSignedIn, function(req, res) {
       res.redirect('/profile');
     });
   });
-
-});
+}); // end: withdraw transaction routine
 
 function checkAmount(amount, req, res) {
   if(amount <= 0) {
@@ -170,7 +167,7 @@ function checkAmount(amount, req, res) {
 
 function requireSignedIn(req, res, next) {
   if (!req.session.currentUser) {
-      return res.redirect('/');
+    return res.redirect('/');
   }
   
   // next is needed for middleware functions

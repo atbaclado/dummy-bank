@@ -25,14 +25,14 @@ describe('route: /signin', function() {
   it('should identify incorrect email', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':'flames@gmail.com','password':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
-    // const $ = cheerio.load(response.data);
-    // assert.equal($('h3#signinMsg').text(), 'Incorrect email.');
+    /* const $ = cheerio.load(response.data);
+     assert.equal($('h3#signinMsg').text(), 'Incorrect email.');*/
   });
 
   it('should identify incorrect password', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'atbaclado'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
-    // const $ = cheerio.load(response.data);
-    // assert.equal($('h3#signinMsg').text(), 'Incorrect password.');
+    /* const $ = cheerio.load(response.data);
+     assert.equal($('h3#signinMsg').text(), 'Incorrect password.');*/
   });
 });

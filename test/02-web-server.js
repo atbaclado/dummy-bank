@@ -48,7 +48,7 @@ describe('web server', function() {
     assert.isTrue(this.spies.set.called);
     assert.isTrue(this.spies.set.calledWith('views', sinon.match((value) => {
         return /^(\.\/)?views\/?$/.test(value)
-            || value === path.join(__dirname, '..', 'views');
+          || value === path.join(__dirname, '..', 'views');
     })));
   });
 

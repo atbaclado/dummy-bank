@@ -51,8 +51,7 @@ router.post('/signup', function(req, res) {
       res.redirect('/profile');
     });
   });
-
-});
+}); // end: sign-up routine
 
 
 router.post('/signin', function(req, res) {
@@ -74,6 +73,7 @@ router.post('/signin', function(req, res) {
 			req.flash('signInMessage', 'Incorrect password.');
 			return res.redirect('/');
 		}
+
     // shows that the account is signed in successfully 
     req.flash('statusMessage', 'Signed in successfully!');
     req.session.currentUser = user.email;
@@ -83,8 +83,7 @@ router.post('/signin', function(req, res) {
 		}
 		res.redirect('/profile');
   });
-  
-});
+}); // end: sign-in routine
 
 router.get('/signout', function(req, res) {
 	req.session.destroy();
