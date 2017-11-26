@@ -18,8 +18,8 @@ describe('route: /signup', function() {
   });
 
   it('should sign up successfully', async function() {
-    const response = await axios.post( this.url, qs.stringify({'email':'atbac@gmail.com','password':'atbac', 'confirmation':'atbac'}));
-    assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
+    const response = await axios.post( this.url, qs.stringify({'email':'atbac6@gmail.com','password':'atbac6', 'confirmation':'atbac6'}));
+      assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
   });
 
   it('should identify if email already in use', async function() {

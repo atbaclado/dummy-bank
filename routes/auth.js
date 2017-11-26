@@ -48,6 +48,7 @@ router.post('/signup', function(req, res) {
       });
     }).then(function() {
       req.flash('statusMessage', 'Signed up successfully!');
+      req.session.currentUser = req.body.email;
       res.redirect('/profile');
     });
   });
