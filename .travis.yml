@@ -1,22 +1,16 @@
 language: node_js
 node_js:
-  - "7"
-
-addons:
-  postgresql: "9.6"
-
-services:
-  - postgresql
-
-before_script:
-  - psql -c 'create database bankdb;' -U postgres
-
-before_install:
-  - npm install
-
-
-notifications:
-  email:
-    - kspanerio@gmail.com
-    - atbaclado@up.edu.ph
-
+  - "stable"
+cache:
+  directories:
+  - node_modules
+script:
+  - npm test
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: travis_kat
