@@ -2,11 +2,24 @@ language: node_js
 node_js:
   - "7"
 
+env:
+  - postgres://postgres:04031998@localhost:5432/bankdb
+
+addons:
+  postgresql: "9.6"
+
 services:
   - postgresql
 
 before_script:
   - psql -c 'create database bankdb;' -U postgres
+  - node ./replay.js -d postgres://postgres:04031998@localhost:5432/bankdb
 
 before_install:
   - npm install
+
+notifications:
+  email:
+    - kspanerio@up.edu.ph
+    - atbaclado@up.edu.ph
+

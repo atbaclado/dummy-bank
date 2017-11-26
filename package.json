@@ -1,5 +1,5 @@
 {
-  "name": "dummy-bank",
+  "name": "c",
   "version": "1.0.0",
   "description": "dummy bank application using expressjs",
   "main": "index.js",
@@ -35,5 +35,16 @@
     "proxyquire": "^1.8.0",
     "qs": "^6.5.1",
     "sinon": "^3.3.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atbaclado/dummy-bank.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atbaclado/dummy-bank/issues"
+  },
+  "homepage": "https://github.com/atbaclado/dummy-bank#readme"
 }
