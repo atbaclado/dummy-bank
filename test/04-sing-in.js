@@ -18,7 +18,7 @@ describe('route: /signin', function() {
   });
 
   it('should sign in successfully', async function() {
-    const response = await axios.post( this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames'}));
+    const response = await axios.post( this.url, qs.stringify({'email':'atbac@gmail.com','password':'atbac'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
   });
 
