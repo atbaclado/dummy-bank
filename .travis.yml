@@ -1,12 +1,23 @@
 language: node_js
 node_js:
   - "stable"
+
 cache:
   directories:
   - node_modules
 script:
   - npm test
   - npm run build
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database bankdb;' -U postgres
+
+before_install:
+  - npm install
+  
 deploy:
   provider: pages
   skip_cleanup: true
@@ -14,3 +25,8 @@ deploy:
   local_dir: build
   on:
     branch: travis_kat
+
+notifications:
+  email:
+    - kspanerio@gmail.com
+    - atbaclado@up.edu.ph
