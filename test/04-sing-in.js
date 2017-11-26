@@ -18,19 +18,19 @@ describe('route: /signin', function() {
   });
 
   it('should sign in successfully', async function() {
-    const response = await axios.post( this.url, qs.stringify({'email':'atbac@gmail.com','password':'atbac'}));
+    const response = await axios.post( this.url, qs.stringify({'email':'kspanerio@gmail.com','password':'04031998'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
   });
 
   it('should identify incorrect email', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'flames@gmail.com','password':'flames'}));
+    const response = await axios.post(this.url, qs.stringify({'email':'kspanerio04@gmail.com','password':'04031998'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
     /* const $ = cheerio.load(response.data);
      assert.equal($('h3#signinMsg').text(), 'Incorrect email.');*/
   });
 
   it('should identify incorrect password', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'atbaclado'}));
+    const response = await axios.post(this.url, qs.stringify({'email':'kspanerio03@gmail.com','password':'atbaclado'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
     /* const $ = cheerio.load(response.data);
      assert.equal($('h3#signinMsg').text(), 'Incorrect password.');*/
