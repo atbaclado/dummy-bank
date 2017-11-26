@@ -17,7 +17,7 @@ before_script:
 
 before_install:
   - npm install
-  
+
 deploy:
   provider: pages
   skip_cleanup: true
@@ -29,4 +29,3 @@ deploy:
 notifications:
   email:
     - kspanerio@gmail.com
-    - atbaclado@up.edu.ph
