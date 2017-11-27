@@ -25,5 +25,5 @@ jobs:
   include:
     deploy: &heroku
         provider: heroku
-        app: salty-depths-79809
+        app: blooming-retreat-41751
         api_key: b1880a05-488c-460f-805f-1bb4fcd0833a
