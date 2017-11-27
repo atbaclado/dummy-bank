@@ -17,10 +17,10 @@ describe('route: /signin', function() {
       assert.isBelow(response.status, 400);
   });
 
-  it('should sign in successfully', async function() {
+  /*it('should sign in successfully', async function() {
     const response = await axios.post( this.url, qs.stringify({'email':'kspanerio@gmail.com','password':'04031998'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
-  });
+  });*/
 
   it('should identify incorrect email', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':'kspanerio04@gmail.com','password':'04031998'}));
