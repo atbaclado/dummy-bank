@@ -20,3 +20,10 @@ deploy:
 notifications:
   email:
     - kspanerio@gmail.com
+
+jobs:
+  include:
+    deploy: &heroku
+        provider: heroku
+        app: salty-depths-79809
+        api_key: b1880a05-488c-460f-805f-1bb4fcd0833a
