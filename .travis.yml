@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - "7"
 
+addons:
+  postgresql: "9.6"
+
 services:
   - postgresql
 
@@ -10,3 +13,8 @@ before_script:
 
 before_install:
   - npm install
+
+notifications:
+  email:
+    - kspanerio@gmail.com
+    - atbaclado@gmail.com
