@@ -18,3 +18,10 @@ notifications:
   email:
     - kspanerio@gmail.com
     - atbaclado@gmail.com
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: f6293c63-55c2-4b64-aeee-acb8b75e4983
+  app:
+    develop: blooming-retreat-41751
