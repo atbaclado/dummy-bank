@@ -4,7 +4,7 @@ const orm = require("orm");
 const pg = require("pg"); 
 
 // format: "database://user:password@host:port/databasename"
-var connestString = "postgres://postgres:postgres@localhost:5432/bankdb";
+var connestString =  "postgres://rcfhecaycjabdh:4ffafb45c32e2c3d3138aba299afd94c660c4809dea52e17adcca294af5e449c@ec2-54-225-88-199.compute-1.amazonaws.com:5432/d8fgq52dr36pnn";
 
 describe('Database setup', function() {
     
@@ -21,10 +21,10 @@ describe('Database setup', function() {
     client: 'pg',
     version: '6.4.2',
     connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : 'postgres',
-      database : 'bankdb'
+      host : 'ec2-54-225-88-199.compute-1.amazonaws.com',
+      user : 'rcfhecaycjabdh',
+      password : '4ffafb45c32e2c3d3138aba299afd94c660c4809dea52e17adcca294af5e449c',
+      database : 'd8fgq52dr36pnn'
     }
   });
 
