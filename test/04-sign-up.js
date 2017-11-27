@@ -13,7 +13,7 @@ describe('route: /signup', function() {
   });
 
   it('should handle POST requests', async function() {
-      const response = await axios.post(this.url, qs.stringify({'email':'flames01@gmail.com','password':'flames', 'confirmation':'flames'}));
+      const response = await axios.post(this.url, qs.stringify({'email':'kspanerio@gmail.com','password':'flames', 'confirmation':'04031998'}));
       assert.isBelow(response.status, 400);
   });
 
@@ -23,7 +23,7 @@ describe('route: /signup', function() {
   });
 
   it('should identify if email already in use', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'maii@gmail.com','password':'flames', 'confirmation':'flames'}));
+    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
 
     /*const $ = cheerio.load(response.data);
@@ -31,7 +31,7 @@ describe('route: /signup', function() {
   });
 
   it('should identify passwords do not match', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'atbaclado', 'confirmation':'flames'}));
+    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'04031998', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
 
    /* const $ = cheerio.load(response.data);
