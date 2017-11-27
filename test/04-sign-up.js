@@ -13,7 +13,7 @@ describe('route: /signup', function() {
   });
 
   it('should handle POST requests', async function() {
-      const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
+      const response = await axios.post(this.url, qs.stringify({'email':'flames01@gmail.com','password':'flames', 'confirmation':'flames'}));
       assert.isBelow(response.status, 400);
   });
 
