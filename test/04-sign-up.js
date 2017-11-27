@@ -18,7 +18,7 @@ describe('route: /signup', function() {
   });
 
   it('should sign up successfully', async function() {
-    const response = await axios.post( this.url, qs.stringify({'email':'maii@gmail.com','password':'flames', 'confirmation':'flames'}));
+    const response = await axios.post( this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/profile');
   });
 
@@ -31,7 +31,7 @@ describe('route: /signup', function() {
   });
 
   it('should identify passwords do not match', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'flames@gmail.com','password':'atbaclado', 'confirmation':'flames'}));
+    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'atbaclado', 'confirmation':'flames'}));
     assert.equal(response.request.res.responseUrl, 'http://localhost:3000/');
 
    /* const $ = cheerio.load(response.data);
