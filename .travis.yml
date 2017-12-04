@@ -14,11 +14,6 @@ before_script:
 before_install:
   - npm install
 
-notifications:
-  email:
-    - kspanerio@gmail.com
-    - atbaclado@gmail.com
-
 deploy:
   skip_cleanup: true
 
@@ -28,3 +23,8 @@ jobs:
         provider: heroku
         app: blooming-retreat-41751
         api_key: b1880a05-488c-460f-805f-1bb4fcd0833a
+        
+notifications:
+  email:
+    - kspanerio@up.edu.ph
+    - atbaclado@gmail.com
