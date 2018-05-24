@@ -1,6 +1,6 @@
 {
   "development": {
-    "url": "postgres://postgres:postgres@localhost:5432/bankdb",
+    "url": "postgres://postgres:04031998@localhost:5432/bankdb",
     "dialect": "pg"
   }
 }
