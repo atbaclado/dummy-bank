@@ -26,13 +26,13 @@
             <h3 id="signupMsg">{{ messages.signUpMessage }}</h3>
             <div>                            
               <div>
-                <input type="text" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" placeholder="Email" required>
               </div>
               <div>
-                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="password" id="password" placeholder="Password" minlength="6" required>
               </div>
               <div>
-                <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" required>
+                <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" minlength="6" required>
               </div>
                 <button class="button-1">Sign Up</button>
             </div>
@@ -46,10 +46,10 @@
 
             <div>
               <div>
-                <input type="text" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" placeholder="Email" required>
               </div>
               <div>
-                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="password" id="password" placeholder="Password" minlength="6" required>
               </div>
 
               <button class="button-1">Sign In</button><br>

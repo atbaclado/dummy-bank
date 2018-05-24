@@ -4,7 +4,7 @@
   "description": "dummy bank application using expressjs",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jasmine",
     "start": "node index.js"
   },
   "author": "",
@@ -17,6 +17,7 @@
     "express": "^4.15.2",
     "express-flash": "0.0.2",
     "express-session": "^1.15.2",
+    "faker": "^4.1.0",
     "nunjucks": "^3.0.0",
     "orm": "^4.0.0",
     "passport": "^0.3.2",
@@ -31,6 +32,7 @@
     "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
     "http": "0.0.0",
+    "jasmine": "^3.1.0",
     "knex": "^0.13.0",
     "mocha": "^3.5.3",
     "proxyquire": "^1.8.0",
