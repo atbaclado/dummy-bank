@@ -4,7 +4,7 @@
   "description": "dummy bank application using expressjs",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "karma start karma.conf.js — single-run",
     "start": "node index.js"
   },
   "author": "",
@@ -32,8 +32,12 @@
     "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
     "jasmine": "^3.1.0",
+    "karma": "^2.0.2",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
     "knex": "^0.13.0",
     "mocha": "^3.5.3",
+    "phantomjs-prebuilt": "^2.1.16",
     "proxyquire": "^1.8.0",
     "qs": "^6.5.1",
     "sinon": "^3.3.0"
