@@ -12,7 +12,7 @@ describe('route: /signup', function() {
   let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
   beforeEach(function() {
-      this.root = 'http://localhost:3001/';
+      this.root = 'https://blooming-retreat-41751.herokuapp.com/';
       this.url = this.root + 'signup';
   });
 

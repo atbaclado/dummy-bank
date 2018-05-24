@@ -31,19 +31,19 @@ describe('web server', function() {
     this.stubs = { express: sinon.stub().returns(app) };
   });
 
-  // it('should be written inside a file named "index.js"', function() {
-  //   expect(() => require('../index')).toThrowError()
-  // });
+  it('should be written inside a file named "index.js"', function() {
+    expect(() => require('../index')).not.toThrowError();
+  });
 
   // it('should create an expressjs application', function() {
   //   proxyquire('../index', this.stubs);
-  //   expect(() => require('../index')).doesNotThrow()
+  //   expect(() => require('../index')).not.toThrowError();
   //   expect(this.stubs.express.called).toBe(true);
   // });
 
   // it('should be configured to serve views (i.e. templates) from the "views" directory', function() {
   //   proxyquire('../index', this.stubs);
-  //   expect(() => require('../index')).doesNotThrow
+  //   expect(() => require('../index')).not.toThrowError();
   //   expect(this.spies.set.called).toBe(true);
   //   expect(this.spies.set.calledWith('views', sinon.match((value) => {
   //     return /^(\.\/)?views\/?$/.test(value)
@@ -53,22 +53,22 @@ describe('web server', function() {
 
   // it('should be configured to use nunjucks templating engine for rendering html files', function() {
   //   proxyquire('../index', this.stubs);
-  //   assert.doesNotThrow(() => require('../index'));
-  //   assert.isTrue(this.spies.engine.called);
-  //   assert.isTrue(this.spies.engine.calledWith('html', sinon.match((value) => {
+  //   expect(() => require('../index')).not.toThrowError();
+  //   expect(this.spies.engine.called).toBe(true);
+  //   expect(this.spies.engine.calledWith('html', sinon.match((value) => {
   //       const consolidate = require('consolidate');
   //       return value === consolidate.nunjucks;
-  //   })));
+  //   }))).toBe(true);
   // });
 
   // it('should be configured to use the body-parser middleware to parse urlencoded request bodies', function() {
   //   proxyquire('../index', this.stubs);
-  //   assert.doesNotThrow(() => require('../index'));
-  //   assert.isTrue(this.spies.use.called);
-  //   assert.isTrue(this.spies.use.calledWith(sinon.match((value) => {
+  //   expect(() => require('../index')).not.toThrowError();
+  //   expect(this.spies.use.called).toBe(true);
+  //   expect(this.spies.use.calledWith(sinon.match((value) => {
   //       const bodyparser = require('body-parser');
   //       return value.toString() === bodyparser.urlencoded({ extended: false }).toString();
-  //   })));
+  //   }))).toBe(true);
   // });
 
   /* it('should be configured to serve static files from the "static" directory at the "/static" path', function() {
@@ -86,10 +86,10 @@ describe('web server', function() {
   });
   */
 
-  // it('should listen for incoming http requests at port 3000', function() {
+  // it('should listen for incoming http requests at port 3001', function() {
   //   proxyquire('../index', this.stubs);
-  //   assert.doesNotThrow(() => require('../index'));
-  //   assert.isTrue(this.spies.listen.called);
-  //   assert.isTrue(this.spies.listen.calledWith(3000));
+  //   expect(() => require('../index')).not.toThrowError();
+  //   expect(this.spies.listen.called).toBe(true);
+  //   expect(this.spies.listen.calledWith(3001)).toBe(true);
   // });
 });
