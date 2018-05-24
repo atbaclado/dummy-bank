@@ -3,10 +3,10 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const qs = require('qs');
 
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 describe('route: /signup', function() {
-  let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+  ///let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
   beforeEach(function() {
       this.url = 'http://localhost:3000/signup';
