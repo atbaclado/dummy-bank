@@ -12,7 +12,7 @@ describe('route: /signup', function() {
   let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
   beforeEach(function() {
-      this.root = 'http://localhost:3001/';
+      this.root = 'http://127.0.0.1:3001/';
       this.url = this.root + 'signup';
   });
 
