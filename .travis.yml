@@ -35,7 +35,8 @@ before_script:
   - psql -c 'create database bankdb;' -U postgres
 
 script:
-  - npm run ci:travis
+  - npm start
+  - npm test
 
 jobs:
   include:
