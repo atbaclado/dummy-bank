@@ -31,9 +31,9 @@ describe('web server', function() {
     this.stubs = { express: sinon.stub().returns(app) };
   });
 
-  it('should be written inside a file named "index.js"', function() {
-    expect(() => require('../index')).not.toThrowError();
-  });
+  // it('should be written inside a file named "index.js"', function() {
+  //   expect(() => require('../index')).not.toThrowError();
+  // });
 
   // it('should create an expressjs application', function() {
   //   proxyquire('../index', this.stubs);
