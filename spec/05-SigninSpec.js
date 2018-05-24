@@ -10,10 +10,10 @@ define(function(require) {
     var email = faker.internet.email()
     var password = faker.internet.password()
 
-    beforeEach(function() {
-        this.root = 'http://localhost:3001/';
-        this.url = this.root + 'signup';
-    });
+  beforeEach(function() {
+      this.root = 'http://localhost:8888/';
+      this.url = this.root + 'signup';
+  });
 
     it('should handle POST requests', async function() {
         const response = await axios.post(this.url, qs.stringify({'email':email,'password':password, 'confirmation':'password'}));
