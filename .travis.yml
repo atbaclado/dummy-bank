@@ -9,11 +9,11 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database bankdb;' -U postgres
+  - psql -c 'create database bankdb;' -U postgres  
+  - npm start
 
 before_install:
   - npm install
-  - npm start
 
 deploy:
   skip_cleanup: true
