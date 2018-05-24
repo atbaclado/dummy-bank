@@ -14,7 +14,7 @@ before_script:
   - npm install
 
 script:
-  - node_modules/karma/bin/karma start my.conf.js --single-run
+  - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 before_install:
   - export CHROME_BIN=chromium-browser
