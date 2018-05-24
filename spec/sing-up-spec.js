@@ -5,11 +5,10 @@ const faker = require('faker');
 
 var email = faker.internet.email()
 var password = faker.internet.password()
-var base_url = 'http://localhost:3001/';
+var base_url = 'http://127.0.0.1:3001/';
       
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
 describe('route: /signup', function() {
   let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
