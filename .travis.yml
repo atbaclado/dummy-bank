@@ -7,11 +7,6 @@ cache:
     - node_modules
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
   postgresql: "9.6"
 
 node_js:
@@ -35,12 +30,9 @@ install:
 after_install:
   - npm rebuild node-sass
   - ./node_modules/protractor/bin/webdriver-manager update
-
+  
 before_script:
-  - npm rebuild node-sass
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
+  - psql -c 'create database bankdb;' -U postgres
 
 script:
   - npm run ci:travis
