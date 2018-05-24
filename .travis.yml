@@ -10,12 +10,10 @@ services:
 
 before_script:
   - psql -c 'create database bankdb;' -U postgres  
+  - node index.js  
 
 before_install:
   - npm install
-
-before:
-  - npm start
 
 deploy:
   skip_cleanup: true
