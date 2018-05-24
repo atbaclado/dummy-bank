@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Fri May 25 2018 00:38:50 GMT+0800 (+08)
+// Generated on Fri May 25 2018 03:45:05 GMT+0800 (+08)
 
 module.exports = function(config) {
   config.set({
@@ -10,12 +10,14 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'spec/*[sS]pec.js'
+      'test-main.js',
+      { pattern: 'spec/*[sS]pec.js', included: false },
+      'index.js'
     ],
 
 
@@ -27,10 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec/*[sS].js': [ 'browserify' ]
     },
-
-    plugins: ['jasmine', 'karma-browserify'],
 
 
     // test results reporter to use
@@ -58,7 +57,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -67,6 +66,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: 1
+    concurrency: Infinity
   })
 }
