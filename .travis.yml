@@ -4,6 +4,7 @@ node_js:
 
 addons:
   postgresql: "9.6"
+  chrome: stable
 
 services:
   - postgresql
@@ -11,7 +12,8 @@ services:
 before_script:
   - psql -c 'create database bankdb;' -U postgres
   - npm install -g npm@latest
-  - npm install
+  - sudo chown root /opt/google/chrome/chrome-sandbox
+  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 
 script:
   - node_modules/karma/bin/karma start karma.conf.js --single-run
