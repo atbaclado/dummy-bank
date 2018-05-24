@@ -1,10 +1,10 @@
 const path = require('path');
 const sinon = require('sinon');
+const express = require('express');
 const proxyquire = require('proxyquire');
 
 describe('web server', function() {
   beforeEach(function() {
-    const express = require('express');
     const app = express();
     const methods = {
       set: app.set.bind(app),
