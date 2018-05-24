@@ -18,7 +18,7 @@ const radix = 10;
 
 // syntax for importing and using static files 
 app.set('views', './views');
-app.set('port', process.env.PORT || 1234);
+app.set('port', process.env.PORT || 8888);
 app.engine('html', consolidate.nunjucks);
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));

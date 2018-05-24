@@ -8,24 +8,13 @@ cache:
 
 addons:
   postgresql: "9.6"
+  chrome: stable
 
 node_js:
   - "7"
 
 services:
   - postgresql
-
-
-matrix:
-  fast_finish: true
-
-before_install:
-  - npm install npm@5 -g
-  - npm cache verify
-  - npm update
-
-install:
-  - npm install
 
 after_install:
   - npm rebuild node-sass
