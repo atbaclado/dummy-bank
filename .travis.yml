@@ -12,10 +12,10 @@ before_script:
   - npm install
 
 script:
-  - node_modules/karma/bin/karma start my.conf.js --single-run
+  - node_modules/karma/bin/karma start karma.conf.js --single-run
 
 before_install:
-  - psql -c 'create database bankdb;' -U postgresl
+  - psql -c 'create database bankdb;' -U postgresql
 
 deploy:
   skip_cleanup: true
