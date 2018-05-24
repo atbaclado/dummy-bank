@@ -10,7 +10,7 @@ describe('route: /signup', function() {
   var password = faker.internet.password()
 
   beforeEach(function() {
-      this.root = 'http://localhost:3001/';
+      this.root = 'http://localhost:8888/';
       this.url = this.root + 'signup';
   });
 
