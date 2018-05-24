@@ -13,6 +13,7 @@ before_script:
 
 before_install:
   - npm install
+  - npm start
 
 deploy:
   skip_cleanup: true
