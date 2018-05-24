@@ -3,15 +3,9 @@
   "version": "1.0.0",
   "description": "dummy bank application using expressjs",
   "main": "index.js",
-<<<<<<< HEAD
   "scripts": {    
     "start": "node index.js",
     "test": "jasmine"
-=======
-  "scripts": {
-    "test": "karma start karma.conf.js --single-run",
-    "start": "node index.js"
->>>>>>> master
   },
   "author": "",
   "license": "ISC",
