@@ -1,5 +1,5 @@
-define(['index'], function(App, $, _) {
-  const http = require("http"); 
+define(function(require) {
+  const http = require("http");
   const orm = require("orm");
 
   describe('initial setup', function() {

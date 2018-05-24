@@ -1,4 +1,4 @@
-define(['index'], function(App, $, _) {
+define(function(require) {
   const http = require("http"); 
   const orm = require("orm");
   const pg = require("pg"); 

@@ -1,4 +1,4 @@
-define(['index'], function(App, $, _) {
+define(function(require) {
   const axios = require('axios');
   const cheerio = require('cheerio');
   const qs = require('qs');

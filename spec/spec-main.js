@@ -25,6 +25,10 @@ require.config({
   // Karma serves files under /base, which is the basePath from your config file
   baseUrl: '/base',
 
+  paths: {
+    "@scope/lib": 'node_modules/@scope/lib/index'
+  },
+
   // dynamically load all test files
   deps: tests,
 

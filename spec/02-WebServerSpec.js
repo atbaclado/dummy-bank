@@ -1,4 +1,4 @@
-define(['index'], function(App, $, _) {
+define(function(require) {
   const path = require('path');
   const sinon = require('sinon');
   const express = require('express');

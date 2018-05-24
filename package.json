@@ -4,7 +4,7 @@
   "description": "dummy bank application using expressjs",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --single-run",
+    "test": "karma start karma.conf.js",
     "start": "node index.js"
   },
   "author": "",
@@ -28,12 +28,15 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
+    "browserify": "^16.2.2",
     "chai": "^4.1.2",
     "faker": "^4.1.0",
     "jasmine": "^3.1.0",
-    "jasmine-core": "^3.1.0",
+    "jasmine-core": "2.5.2",
     "karma": "^2.0.2",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "^1.0.1",
+    "karma-coverage": "^1.1.2",
     "karma-jasmine": "^1.1.2",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
