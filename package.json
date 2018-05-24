@@ -4,7 +4,7 @@
   "description": "dummy bank application using expressjs",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js — single-run",
+    "test": "jasmine",
     "start": "node index.js"
   },
   "author": "",

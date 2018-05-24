@@ -30,7 +30,7 @@ module.exports = function(config) {
       'spec/*[sS].js': [ 'browserify' ]
     },
 
-    plugins: ['karma-browserify'],
+    plugins: ['jasmine', 'karma-browserify'],
 
 
     // test results reporter to use
