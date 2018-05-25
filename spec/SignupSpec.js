@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const qs = require('qs');
 const faker = require('faker');
 
-var base_url = 'http://localhost:3001/';
+var base_url = 'http://localhost:9999/';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 describe('route: /signup', function() {
