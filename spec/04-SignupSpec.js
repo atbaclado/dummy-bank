@@ -44,24 +44,6 @@ describe('User Sign Up', function() {
     expect(xhr.status).toBe(200);
   });
 
-<<<<<<< HEAD:spec/sing-up-spec.js
-  // it('should identify if email already in use', async function() {
-  //   const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
-  //   expect(response.request.res.responseUrl).toBe(this.root);
-
-  //   /*const $ = cheerio.load(response.data);
-  //   assert.equal($('h3#signupMsg').text(), 'Email is already in use.');*/
-  // });
-
-  // it('should identify passwords do not match', async function() {
-  //   const response = await axios.post(this.url, qs.stringify({'email':email,'password':password, 'confirmation':'flames'}));
-  //   expect(response.request.res.responseUrl).toBe(this.root);
-
-  //  /* const $ = cheerio.load(response.data);
-  //   assert.equal($('h3#signupMsg').text(), 'Passwords do not match.');*/
-  // });
-});
-=======
   it('should identify if email already in use', async function() {
     const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
     expect(response.request.res.responseUrl).toBe(this.root);
@@ -75,4 +57,3 @@ describe('User Sign Up', function() {
 
 module.exports.email = email;
 module.exports.password = password;
->>>>>>> 193ef422e14e103e967f0f2ab0fddc2867d8b473:spec/04-SignupSpec.js
