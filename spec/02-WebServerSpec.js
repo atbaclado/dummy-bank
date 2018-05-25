@@ -2,7 +2,7 @@ const path = require('path');
 const sinon = require('sinon');
 const express = require('express');
 const proxyquire = require('proxyquire');
-/*
+
 describe('web server', function() {
   beforeEach(function() {
     const app = express();
@@ -71,7 +71,7 @@ describe('web server', function() {
     }))).toBe(true);
   });
 
-  it('should be configured to serve static files from the "static" directory at the "/static" path', function() {
+  /*it('should be configured to serve static files from the "static" directory at the "/static" path', function() {
     proxyquire('../index', this.stubs);
     assert.doesNotThrow(() => require('../index'));
     assert.isTrue(this.spies.use.called);
@@ -83,7 +83,7 @@ describe('web server', function() {
       return /^(\.\/)?static\/?$/.test(value)
             || value === path.join(__dirname, '..', 'static');
     })));
-  });
+  });*/
 
   it('should listen for incoming http requests at port 3000', function() {
     proxyquire('../index', this.stubs);
@@ -92,4 +92,3 @@ describe('web server', function() {
     expect(this.spies.listen.calledWith(3000)).toBe(true);
   });
 });
-*/
