@@ -25,7 +25,7 @@ beforeEach(function() {
   });
 
   it('should identify if email already in use', async function() {
-    const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
+    const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
     expect(response.request.res.responseUrl).toBe(this.root);
   });
 
