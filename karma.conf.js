@@ -12,23 +12,36 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine', 'requirejs'],
 
+    middleware: ['node-modules'],
 
     // list of files / patterns to load in the browser
     files: [
-      'spec/spec-main.js',
+      'node_modules/requirejs/require.js',
+      'node_modules/karma-requirejs/lib/adapter.js',
+      { pattern: 'spec/spec-main.js',    included: true},
       { pattern: 'spec/*[sS]pec.js', included: false },
-      { pattern: 'node_modules/*/bin/*.js', included: false }
+      { pattern: 'routes/*.js', included: false },
+      { pattern: '*.js', included: false }
     ],
-
 
     // list of files / patterns to exclude
     exclude: [
+      'index.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      // 'spec/*[sS]pec.js': ['common_js']
+    },
+
+    common_js: {
+      // Array of globs to auto require when the tests run. You can use
+      // this to control the entry point for your tests.
+      autoRequire: [
+        'spec/*[sS]pec.js'
+      ]
     },
 
 

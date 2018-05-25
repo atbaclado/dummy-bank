@@ -1,4 +1,4 @@
-define(function(require) {
+// define(function(require) {
   const path = require('path');
   const sinon = require('sinon');
   const express = require('express');
@@ -94,4 +94,4 @@ define(function(require) {
     //   expect(this.spies.listen.calledWith(3001)).toBe(true);
     // });
   });
-})
+// })

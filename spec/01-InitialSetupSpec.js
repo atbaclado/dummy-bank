@@ -1,4 +1,4 @@
-define(function(require) {
+// define(function(require) {
   const http = require("http");
   const orm = require("orm");
 
@@ -32,4 +32,4 @@ define(function(require) {
       });
     });
   });
-})
+// })

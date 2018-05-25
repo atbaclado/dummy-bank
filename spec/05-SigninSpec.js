@@ -1,4 +1,4 @@
-define(function(require) {
+// define(function(require) {
   const axios = require('axios');
   const cheerio = require('cheerio');
   const qs = require('qs');
@@ -35,4 +35,4 @@ define(function(require) {
       expect(response.request.res.responseUrl).toBe(this.root);
     });
   });
-})
+// })
