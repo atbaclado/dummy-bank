@@ -182,6 +182,4 @@ function requireSignedIn(req, res, next) {
   next();
 }
 
-app.listen(app.get('port'), function() {
-  console.log('Server is now running at port ' + app.get('port'));
-});
+app.listen(app.get('port'));

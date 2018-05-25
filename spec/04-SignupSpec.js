@@ -4,15 +4,15 @@ const qs = require('qs');
 const faker = require('faker');
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+const email = faker.internet.email()
+const password = faker.internet.password()
 
 describe('User Sign Up', function() {
-  var email = faker.internet.email()
-  var password = faker.internet.password()
 
-beforeEach(function() {
-    this.root = 'http://localhost:3000/';
-    this.url = this.root + 'signup';
-});
+  beforeEach(function() {
+      this.root = 'http://localhost:3000/';
+      this.url = this.root + 'signup';
+  });
 
   it('should handle POST requests', async function() {
       const response = await axios.post(this.url, qs.stringify({'email':email,'password':password, 'confirmation':'password'}));
@@ -34,3 +34,6 @@ beforeEach(function() {
     expect(response.request.res.responseUrl).toBe(this.root);
   });
 });
+
+module.exports.email = email;
+module.exports.password = password;
