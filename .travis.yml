@@ -11,6 +11,7 @@ services:
 
 before_script:
   - npm install
+  - psql -c 'create database bankdb;' -U postgres
 
 script:
   - jasmine
