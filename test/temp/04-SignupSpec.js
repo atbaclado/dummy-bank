@@ -11,7 +11,7 @@
     var password = faker.internet.password()
 
   beforeEach(function() {
-      this.root = 'http://localhost:8888/';
+      this.root = 'http://localhost:3000/';
       this.url = this.root + 'signup';
   });
 
@@ -20,18 +20,18 @@
         expect(response.status).toBeLessThan(400);
     });
 
-    it('should sign in successfully', async function() {
-      const response = await axios.post( this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames'}));
+    it('should sign up successfully', async function() {
+      const response = await axios.post( this.url, qs.stringify({'email':email,'password':password, 'confirmation':password}));
       expect(response.request.res.responseUrl).toBe(this.root+'profile');
     });
 
-    it('should identify if email not in use', async function() {
-      const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
+    it('should identify if email already in use', async function() {
+      const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':'flames', 'confirmation':'flames'}));
       expect(response.request.res.responseUrl).toBe(this.root);
     });
 
     it('should identify passwords do not match', async function() {
-      const response = await axios.post(this.url, qs.stringify({'email':'atbaclado@gmail.com','password':password, 'confirmation':'flames'}));
+      const response = await axios.post(this.url, qs.stringify({'email':email,'password':password, 'confirmation':'flames'}));
       expect(response.request.res.responseUrl).toBe(this.root);
     });
   });
