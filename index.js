@@ -18,7 +18,7 @@ const radix = 10;
 
 // syntax for importing and using static files 
 app.set('views', './views');
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3000);
 app.engine('html', consolidate.nunjucks);
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(cookieparser('secret-cookie'));
@@ -182,6 +182,4 @@ function requireSignedIn(req, res, next) {
   next();
 }
 
-app.listen(app.get('port'), function() {
-  console.log('Server is now running at port ' + app.get('port'));
-});
+app.listen(app.get('port'));

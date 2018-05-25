@@ -5,16 +5,14 @@ const faker = require('faker');
 var ondone = require('ondone');
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-var email = faker.internet.email()
-var password = faker.internet.password()
-
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+const email = faker.internet.email()
+const password = faker.internet.password()
 
-describe('route: /signup', function() {
-  let config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+describe('User Sign Up', function() {
 
   beforeEach(function() {
-    this.root = 'http://localhost:3001/';
+    this.root = 'http://localhost:3000/';
     this.url = this.root + 'signup';
   });
 
@@ -46,6 +44,7 @@ describe('route: /signup', function() {
     expect(xhr.status).toBe(200);
   });
 
+<<<<<<< HEAD:spec/sing-up-spec.js
   // it('should identify if email already in use', async function() {
   //   const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
   //   expect(response.request.res.responseUrl).toBe(this.root);
@@ -62,3 +61,18 @@ describe('route: /signup', function() {
   //   assert.equal($('h3#signupMsg').text(), 'Passwords do not match.');*/
   // });
 });
+=======
+  it('should identify if email already in use', async function() {
+    const response = await axios.post(this.url, qs.stringify({'email':email,'password':'flames', 'confirmation':'flames'}));
+    expect(response.request.res.responseUrl).toBe(this.root);
+  });
+
+  it('should identify passwords do not match', async function() {
+    const response = await axios.post(this.url, qs.stringify({'email':email,'password':password, 'confirmation':'flames'}));
+    expect(response.request.res.responseUrl).toBe(this.root);
+  });
+});
+
+module.exports.email = email;
+module.exports.password = password;
+>>>>>>> 193ef422e14e103e967f0f2ab0fddc2867d8b473:spec/04-SignupSpec.js

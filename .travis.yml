@@ -4,15 +4,17 @@ node_js:
 
 addons:
   postgresql: "9.6"
+  chrome: stable
 
 services:
   - postgresql
 
 before_script:
+  - npm install
   - psql -c 'create database bankdb;' -U postgres
 
-before_install:
-  - npm install
+script:
+  - jasmine
 
 deploy:
   skip_cleanup: true
