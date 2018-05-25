@@ -4,6 +4,7 @@ const pg = require("pg");
 
 // format: "database://user:password@host:port/databasename"
 var connestString = "postgres://postgres:postgres@localhost:5432/bankdb";
+jasmine.DEFAULT_TIMEOUT_INTERVAl
 
 describe('Database Setup', function() {
     
@@ -28,6 +29,16 @@ describe('Database Setup', function() {
   });
 
   describe('Database Schema', function () {
+    var originalTimeout;
+    
+    beforeEach(function() {
+      originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    });
+
+    afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    });
 
     it('users table should be found', function (done) {     
       knex.schema.hasTable('users').then(function(exists, err) {

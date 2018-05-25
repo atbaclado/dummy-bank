@@ -83,12 +83,12 @@ describe('web server', function() {
       return /^(\.\/)?static\/?$/.test(value)
             || value === path.join(__dirname, '..', 'static');
     })));
-  });*/
+  });
 
   it('should listen for incoming http requests at port 3000', function() {
     proxyquire('../index', this.stubs);
     expect(() => require('../index')).not.toThrowError();
     expect(this.spies.listen.called).toBe(true);
     expect(this.spies.listen.calledWith(3000)).toBe(true);
-  });
+  });*/
 });
